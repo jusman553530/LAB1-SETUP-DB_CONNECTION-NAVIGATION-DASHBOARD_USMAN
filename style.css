@@ -1,4 +1,7 @@
-/* Minimalist CSS for Assessment System */
+/* ============================= */
+/*  GLOBAL RESET */
+/* ============================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -15,32 +18,46 @@ body {
     margin: 0 auto;
 }
 
-/* Navigation */
-nav {
-    background-color: white;
-    padding: 15px 20px;
+
+/* ============================= */
+/*  NAVIGATION */
+/* ============================= */
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    padding: 12px 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
 }
 
-nav a {
+.main-nav a {
     color: #2c3e50;
     text-decoration: none;
-    padding: 8px 12px;
+    padding: 8px 14px;
     border-radius: 4px;
-    transition: background-color 0.2s;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-nav a:hover {
-    background-color: #e9ecef;
+.main-nav a:hover {
+    background-color: #f7882e;
+    color: #ffffff;
 }
 
-nav hr {
-    display: none;
+.main-nav a.active {
+    background-color: #f7882e;
+    color: #ffffff;
 }
 
-/* Headings */
+
+/* ============================= */
+/*  HEADINGS */
+/* ============================= */
+
 h2 {
     font-size: 2rem;
     font-weight: 400;
@@ -50,7 +67,11 @@ h2 {
     border-bottom: 2px solid #dee2e6;
 }
 
-/* Dashboard Stats */
+
+/* ============================= */
+/*  DASHBOARD STATS */
+/* ============================= */
+
 ul {
     list-style: none;
     display: grid;
@@ -60,10 +81,10 @@ ul {
 }
 
 ul li {
-    background-color: white;
+    background-color: #ffffff;
     padding: 25px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
     font-size: 1rem;
     color: #6c757d;
 }
@@ -71,114 +92,1815 @@ ul li {
 ul li b {
     display: block;
     font-size: 2rem;
-    color: #2c3e50;
+    color: #e7671d;
     margin-top: 10px;
 }
 
-/* Quick Links Section */
+
+/* ============================= */
+/*  QUICK LINKS (DASHBOARD) */
+/* ============================= */
+
 p {
-    background-color: white;
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
 }
 
 p a {
-    color: #3498db;
+    color: #e7671d;
     text-decoration: none;
-    padding: 5px 10px;
+    padding: 6px 12px;
     border-radius: 4px;
-    transition: background-color 0.2s;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 p a:hover {
-    background-color: #e9ecef;
-    text-decoration: none;
+    background-color: #f7882e;
+    color: #ffffff;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-    
-    nav {
-        padding: 10px;
-    }
-    
-    nav a {
-        display: inline-block;
-        margin: 5px;
-    }
-    
-    ul {
-        grid-template-columns: 1fr;
-    }
-    
-    ul li {
-        padding: 20px;
-    }
-    
-    ul li b {
-        font-size: 1.75rem;
-    }
-}
-
-/* Links separator */
 p a:not(:last-child)::after {
     content: "|";
     color: #dee2e6;
     margin-left: 10px;
     margin-right: 5px;
-    text-decoration: none;
-}
-/* Navigation styles - add this to your existing style.css */
-
-.main-nav {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 16px;
-    background-color: white;
-    padding: 15px 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.nav-link {
+
+/* ============================= */
+/*  CLIENTS TABLE */
+/* ============================= */
+
+.clients-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 20px 0;
+    font-size: 1rem;
+}
+
+.clients-table th {
+    background-color: #e7671d !important;
+    color: #ffffff !important;
+    padding: 18px 16px !important;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #d55c1a;
+}
+
+.clients-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #eaeef2;
     color: #2c3e50;
+}
+
+.clients-table tr:last-child td {
+    border-bottom: none;
+}
+
+.clients-table tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+.clients-table tr:hover {
+    background-color: #fff3e0;
+    transition: background-color 0.2s ease;
+}
+
+.clients-table tr:first-child:hover {
+    background-color: #ffffff;
+}
+
+
+/* ============================= */
+/*  EDIT LINK (for Clients) */
+/* ============================= */
+
+.edit-link {
+    color: #e7671d;
     text-decoration: none;
-    padding: 8px 12px;
+    padding: 6px 12px;
     border-radius: 4px;
+    font-weight: 500;
     transition: all 0.2s ease;
+    display: inline-block;
+    border: 1px solid transparent;
+}
+
+.edit-link:hover {
+    background-color: #e7671d;
+    color: #ffffff;
+    border-color: #e7671d;
+}
+
+
+/* ============================= */
+/*  ADD CLIENT BUTTON */
+/* ============================= */
+
+.add-btn {
+    background-color: #e7671d;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    margin: 10px 0;
+    transition: background-color 0.2s ease;
+}
+
+.add-btn:hover {
+    background-color: #f7882e;
+}
+
+
+/* ============================= */
+/*  EDIT CLIENT FORM */
+/* ============================= */
+
+body > form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 25px 0;
+}
+
+body > form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2c3e50;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+body > form input[type="text"],
+body > form input[type="email"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background-color: #fafafa;
+    box-sizing: border-box;
+}
+
+body > form input[type="text"]:focus,
+body > form input[type="email"]:focus {
+    outline: none;
+    border-color: #e7671d;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(231, 103, 29, 0.1);
+}
+
+body > form input[required] {
+    border-left: 4px solid #e7671d;
+}
+
+body > form button[type="submit"] {
+    background-color: #e7671d;
+    color: #ffffff;
+    border: none;
+    padding: 14px 28px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-right: 15px;
+    box-shadow: 0 2px 4px rgba(231, 103, 29, 0.3);
+}
+
+body > form button[type="submit"]:hover {
+    background-color: #f7882e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(231, 103, 29, 0.4);
+}
+
+
+/* ============================= */
+/*  ADD CLIENT FORM (Unique) */
+/* ============================= */
+
+form.add-form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 25px 0;
+}
+
+form.add-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2c3e50;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+form.add-form input[type="text"],
+form.add-form input[type="email"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background-color: #fafafa;
+    box-sizing: border-box;
+}
+
+form.add-form input[type="text"]:focus,
+form.add-form input[type="email"]:focus {
+    outline: none;
+    border-color: #e7671d;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(231, 103, 29, 0.1);
+}
+
+form.add-form input[required] {
+    border-left: 4px solid #e7671d;
+}
+
+form.add-form button.save-btn {
+    background-color: #e7671d;
+    color: #ffffff;
+    border: none;
+    padding: 14px 28px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-right: 15px;
+    box-shadow: 0 2px 4px rgba(231, 103, 29, 0.3);
+}
+
+form.add-form button.save-btn:hover {
+    background-color: #f7882e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(231, 103, 29, 0.4);
+}
+
+
+/* ============================= */
+/*  SERVICES PAGE (Unique) */
+/* ============================= */
+
+.services-heading {
+    font-size: 2rem;
+    font-weight: 400;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.services-add-btn {
+    display: inline-block;
+    background-color: #e7671d;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    margin: 10px 0;
+    transition: background-color 0.2s ease;
+}
+
+.services-add-btn:hover {
+    background-color: #f7882e;
+}
+
+.services-table-container {
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+.services-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 20px 0;
+    font-size: 1rem;
+}
+
+.services-table thead tr {
+    background-color: #e7671d;
+}
+
+.services-table th {
+    background-color: #e7671d !important;
+    color: #ffffff !important;
+    padding: 18px 16px !important;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+.services-id-col { width: 10%; }
+.services-name-col { width: 40%; }
+.services-rate-col { width: 20%; }
+.services-status-col { width: 15%; }
+.services-action-col { width: 15%; }
+
+.services-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #eaeef2;
+    color: #2c3e50;
+}
+
+.services-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.services-table tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+.services-table tbody tr:hover {
+    background-color: #fff3e0;
+    transition: background-color 0.2s ease;
+}
+
+.services-table thead tr:hover {
+    background-color: #e7671d;
+}
+
+.status-badge-active {
+    display: inline-block;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.status-badge-inactive {
+    display: inline-block;
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.services-edit-link {
+    color: #e7671d;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: inline-block;
+    border: 1px solid transparent;
+}
+
+.services-edit-link:hover {
+    background-color: #e7671d;
+    color: #ffffff;
+    border-color: #e7671d;
+}
+
+.services-rate {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.services-empty-message {
+    text-align: center;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.services-empty-link {
+    color: #e7671d;
+    text-decoration: none;
     font-weight: 500;
 }
 
-.nav-link:hover {
-    background-color: #e9ecef;
-    color: #1a73e8;
+.services-empty-link:hover {
+    text-decoration: underline;
 }
 
-/* Active link style (optional) */
-.nav-link.active {
-    background-color: #e9ecef;
-    color: #1a73e8;
+
+/* ============================= */
+/*  SHARED COMPONENTS */
+/* ============================= */
+
+.button-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
 }
 
-/* Remove the old hr line since we don't need it */
-.main-nav + hr {
-    display: none;
+.back-link {
+    color: #666;
+    text-decoration: none;
+    padding: 14px 20px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    display: inline-block;
 }
 
-/* Responsive styles */
+.back-link:hover {
+    color: #e7671d;
+    background-color: #f5f5f5;
+}
+
+.error-message {
+    background-color: #fee9e7;
+    color: #c62828;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border-left: 4px solid #c62828;
+    margin-bottom: 20px;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+/* ============================= */
+/*  RESPONSIVE (Global) */
+/* ============================= */
+
 @media (max-width: 768px) {
-    .main-nav {
+    body {
         padding: 10px;
-        justify-content: center;
     }
-    
-    .nav-link {
+
+    .main-nav {
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .main-nav a {
         font-size: 14px;
         padding: 6px 10px;
+    }
+
+    ul {
+        grid-template-columns: 1fr;
+    }
+
+    ul li {
+        padding: 20px;
+    }
+
+    ul li b {
+        font-size: 1.75rem;
+    }
+
+    .clients-table {
+        font-size: 0.9rem;
+    }
+    
+    .clients-table th {
+        padding: 14px 10px !important;
+        font-size: 1rem;
+    }
+    
+    .clients-table td {
+        padding: 12px 10px;
+    }
+    
+    .edit-link {
+        padding: 4px 8px;
+        font-size: 0.85rem;
+    }
+
+    body > form,
+    form.add-form,
+    .services-table {
+        padding: 20px;
+    }
+    
+    body > form input[type="text"],
+    body > form input[type="email"],
+    form.add-form input[type="text"],
+    form.add-form input[type="email"],
+    .services-table input[type="text"] {
+        padding: 10px 12px;
+    }
+    
+    body > form button[type="submit"],
+    form.add-form button.save-btn,
+    .services-add-btn {
+        width: 100%;
+        margin-right: 0;
+    }
+    
+    .back-link {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+
+    .services-table th {
+        padding: 14px 10px !important;
+        font-size: 1rem;
+    }
+    
+    .services-table td {
+        padding: 12px 10px;
+    }
+    
+    .services-edit-link {
+        padding: 4px 8px;
+        font-size: 0.85rem;
+    }
+    
+    .services-add-btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .status-badge-active,
+    .status-badge-inactive {
+        padding: 3px 8px;
+        font-size: 0.8rem;
+    }
+}
+/* ============================= */
+/*  BOOKINGS PAGE - Unique Styles */
+/* ============================= */
+
+/* Heading */
+.bookings-heading {
+    font-size: 2rem;
+    font-weight: 400;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #dee2e6;
+}
+
+/* Add button */
+.bookings-add-btn {
+    display: inline-block;
+    background-color: #e7671d;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    margin: 10px 0;
+    transition: background-color 0.2s ease;
+}
+
+.bookings-add-btn:hover {
+    background-color: #f7882e;
+}
+
+/* Table container */
+.bookings-table-container {
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+/* Bookings table */
+.bookings-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 20px 0;
+    font-size: 1rem;
+}
+
+/* Table header */
+.bookings-table thead tr {
+    background-color: #e7671d;
+}
+
+.bookings-table th {
+    background-color: #e7671d !important;
+    color: #ffffff !important;
+    padding: 18px 16px !important;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+/* Column specific widths */
+.bookings-id-col { width: 5%; }
+.bookings-client-col { width: 15%; }
+.bookings-service-col { width: 15%; }
+.bookings-date-col { width: 12%; }
+.bookings-hours-col { width: 8%; }
+.bookings-total-col { width: 12%; }
+.bookings-status-col { width: 12%; }
+.bookings-action-col { width: 15%; }
+
+/* Table cells */
+.bookings-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #eaeef2;
+    color: #2c3e50;
+}
+
+/* Remove border from last row */
+.bookings-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Zebra striping */
+.bookings-table tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+/* Hover effect */
+.bookings-table tbody tr:hover {
+    background-color: #fff3e0;
+    transition: background-color 0.2s ease;
+}
+
+/* Ensure header doesn't change on hover */
+.bookings-table thead tr:hover {
+    background-color: #e7671d;
+}
+
+/* Status badges - different colors for different statuses */
+.status-badge-pending {
+    display: inline-block;
+    background-color: #fff3e0;
+    color: #e7671d;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.status-badge-confirmed {
+    display: inline-block;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.status-badge-completed {
+    display: inline-block;
+    background-color: #e3f2fd;
+    color: #1565c0;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.status-badge-cancelled {
+    display: inline-block;
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Default status badge for any other status */
+.status-badge {
+    display: inline-block;
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Payment link */
+.bookings-payment-link {
+    color: #e7671d;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: inline-block;
+    border: 1px solid transparent;
+    background-color: #fff3e0;
+}
+
+.bookings-payment-link:hover {
+    background-color: #e7671d;
+    color: #ffffff;
+    border-color: #e7671d;
+}
+
+/* Total column styling */
+.bookings-total {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* Hours column styling */
+.bookings-hours {
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Date column styling */
+.bookings-date {
+    color: #555;
+}
+
+/* Empty message */
+.bookings-empty-message {
+    text-align: center;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.bookings-empty-link {
+    color: #e7671d;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.bookings-empty-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .bookings-table {
+        font-size: 0.9rem;
+    }
+    
+    .bookings-table th {
+        padding: 14px 10px !important;
+        font-size: 1rem;
+    }
+    
+    .bookings-table td {
+        padding: 12px 10px;
+    }
+    
+    .bookings-add-btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .bookings-payment-link {
+        padding: 4px 8px;
+        font-size: 0.85rem;
+    }
+    
+    .status-badge-pending,
+    .status-badge-confirmed,
+    .status-badge-completed,
+    .status-badge-cancelled {
+        padding: 3px 8px;
+        font-size: 0.8rem;
+    }
+    
+    /* Adjust column widths for mobile */
+    .bookings-id-col,
+    .bookings-client-col,
+    .bookings-service-col,
+    .bookings-date-col,
+    .bookings-hours-col,
+    .bookings-total-col,
+    .bookings-status-col,
+    .bookings-action-col {
+        width: auto;
+    }
+}
+/* ============================= */
+/*  CREATE BOOKING PAGE - Unique Styles */
+/* ============================= */
+
+/* Heading */
+.create-booking-heading {
+    font-size: 2rem;
+    font-weight: 400;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #dee2e6;
+}
+
+/* Create booking form */
+.create-booking-form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 25px 0;
+}
+
+/* Form groups */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Labels */
+.create-booking-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2c3e50;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* Required field indicator */
+.create-booking-form label[for]:after {
+    content: " *";
+    color: #e7671d;
+    font-weight: 600;
+}
+
+/* Select inputs */
+.booking-select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background-color: #fafafa;
+    box-sizing: border-box;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232c3e50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 15px;
+}
+
+/* Text inputs */
+.booking-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background-color: #fafafa;
+    box-sizing: border-box;
+}
+
+/* Focus state for inputs and selects */
+.booking-select:focus,
+.booking-input:focus {
+    outline: none;
+    border-color: #e7671d;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(231, 103, 29, 0.1);
+}
+
+/* Required fields (using attribute selector) */
+.booking-select[required],
+.booking-input[required] {
+    border-left: 4px solid #e7671d;
+}
+
+/* Submit button */
+.booking-submit-btn {
+    background-color: #e7671d;
+    color: #ffffff;
+    border: none;
+    padding: 14px 28px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-right: 15px;
+    box-shadow: 0 2px 4px rgba(231, 103, 29, 0.3);
+}
+
+.booking-submit-btn:hover {
+    background-color: #f7882e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(231, 103, 29, 0.4);
+}
+
+/* Info box */
+.booking-info {
+    background-color: #e3f2fd;
+    color: #1565c0;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border-left: 4px solid #1565c0;
+    margin: 20px 0;
+    max-width: 600px;
+    font-size: 0.95rem;
+}
+
+.booking-info p {
+    margin: 0;
+    background: none;
+    padding: 0;
+    box-shadow: none;
+}
+
+.booking-info strong {
+    color: #0d47a1;
+}
+
+/* Disabled state for options */
+.booking-select option:disabled {
+    color: #999;
+    font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .create-booking-form {
+        padding: 20px;
+    }
+    
+    .booking-select,
+    .booking-input {
+        padding: 10px 12px;
+        font-size: 16px; /* Prevents zoom on mobile */
+    }
+    
+    .booking-submit-btn {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .back-link {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .booking-info {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Custom styling for the dropdown arrow */
+@media (max-width: 768px) {
+    .booking-select {
+        background-position: right 10px center;
+        background-size: 12px;
+    }
+}
+
+/* Style for the first/default option */
+.booking-select option:first-of-type {
+    color: #666;
+    font-style: italic;
+}
+/* ============================= */
+/*  EDIT SERVICE PAGE - Unique Styles */
+/* ============================= */
+
+/* Heading */
+.edit-service-heading {
+    font-size: 2rem;
+    font-weight: 400;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #dee2e6;
+}
+
+/* Error message */
+.edit-service-error {
+    background-color: #fee9e7;
+    color: #c62828;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border-left: 4px solid #c62828;
+    margin-bottom: 20px;
+    font-weight: 500;
+    max-width: 600px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Edit service form */
+.edit-service-form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 25px 0;
+}
+
+/* Form groups */
+.edit-service-form .form-group {
+    margin-bottom: 20px;
+}
+
+/* Labels */
+.edit-service-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2c3e50;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* Required field indicator */
+.edit-service-form label[for="edit_service_name"]:after,
+.edit-service-form label[for="edit_service_rate"]:after {
+    content: " *";
+    color: #e7671d;
+    font-weight: 600;
+}
+
+/* Text inputs */
+.edit-service-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background-color: #fafafa;
+    box-sizing: border-box;
+}
+
+/* Textarea */
+.edit-service-textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background-color: #fafafa;
+    box-sizing: border-box;
+    font-family: inherit;
+    resize: vertical;
+}
+
+/* Select input */
+.edit-service-select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background-color: #fafafa;
+    box-sizing: border-box;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232c3e50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 15px;
+}
+
+/* Focus state */
+.edit-service-input:focus,
+.edit-service-textarea:focus,
+.edit-service-select:focus {
+    outline: none;
+    border-color: #e7671d;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(231, 103, 29, 0.1);
+}
+
+/* Required fields border */
+.edit-service-input[required],
+#edit_service_name,
+#edit_service_rate {
+    border-left: 4px solid #e7671d;
+}
+
+/* Update button */
+.edit-service-btn {
+    background-color: #e7671d;
+    color: #ffffff;
+    border: none;
+    padding: 14px 28px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-right: 15px;
+    box-shadow: 0 2px 4px rgba(231, 103, 29, 0.3);
+}
+
+.edit-service-btn:hover {
+    background-color: #f7882e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(231, 103, 29, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .edit-service-form {
+        padding: 20px;
+    }
+    
+    .edit-service-input,
+    .edit-service-textarea,
+    .edit-service-select {
+        padding: 10px 12px;
+        font-size: 16px; /* Prevents zoom on mobile */
+    }
+    
+    .edit-service-btn {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .back-link {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .edit-service-error {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Optional: Style for the dropdown arrow on mobile */
+@media (max-width: 768px) {
+    .edit-service-select {
+        background-position: right 10px center;
+        background-size: 12px;
+    }
+}
+
+/* Style for the textarea placeholder */
+.edit-service-textarea::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+/* Currency symbol hint */
+.edit-service-input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.edit-service-input[type="number"]::-webkit-inner-spin-button,
+.edit-service-input[type="number"]::-webkit-outer-spin-button {
+    opacity: 0.5;
+}
+
+/* Status select specific styling */
+#edit_service_status option[value="1"] {
+    color: #2e7d32;
+}
+
+#edit_service_status option[value="0"] {
+    color: #c62828;
+}
+
+/* ============================= */
+/*  TOOLS PAGE - Unique Styles */
+/* ============================= */
+
+/* Heading */
+.tools-heading {
+    font-size: 2rem;
+    font-weight: 400;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #dee2e6;
+}
+
+/* Subheadings */
+.tools-subheading {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #2c3e50;
+    margin: 30px 0 20px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Message styles */
+.tools-message {
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    max-width: 800px;
+}
+
+.tools-message-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border-left: 4px solid #2e7d32;
+}
+
+.tools-message-error {
+    background-color: #ffebee;
+    color: #c62828;
+    border-left: 4px solid #c62828;
+}
+
+/* Sections */
+.tools-section {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 25px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Table container */
+.tools-table-container {
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+/* Tools table */
+.tools-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 1rem;
+}
+
+.tools-table th {
+    background-color: #e7671d !important;
+    color: #ffffff !important;
+    padding: 16px !important;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.tools-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #eaeef2;
+    color: #2c3e50;
+}
+
+.tools-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tools-table tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+.tools-table tbody tr:hover {
+    background-color: #fff3e0;
+}
+
+/* Column widths */
+.tools-name-col { width: 40%; }
+.tools-total-col { width: 20%; }
+.tools-avail-col { width: 20%; }
+.tools-status-col { width: 20%; }
+
+/* Low stock indicator */
+.tools-low-stock {
+    color: #e7671d;
+    font-weight: 600;
+    position: relative;
+}
+
+.tools-low-stock::after {
+    content: " (Low)";
+    font-size: 0.85rem;
+    color: #e7671d;
+    font-weight: 500;
+}
+
+/* Status badges */
+.tools-status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.tools-in-stock {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.tools-out-of-stock {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+/* Assign form */
+.tools-assign-form {
+    max-width: 500px;
+    margin: 20px 0;
+}
+
+/* Select inputs */
+.tools-select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background-color: #fafafa;
+    box-sizing: border-box;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232c3e50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 15px;
+}
+
+/* Number input */
+.tools-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background-color: #fafafa;
+    box-sizing: border-box;
+}
+
+/* Focus state */
+.tools-select:focus,
+.tools-input:focus {
+    outline: none;
+    border-color: #e7671d;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(231, 103, 29, 0.1);
+}
+
+/* Required fields */
+.tools-select[required],
+.tools-input[required] {
+    border-left: 4px solid #e7671d;
+}
+
+/* Hint text */
+.tools-hint {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.85rem;
+    color: #666;
+    font-style: italic;
+}
+
+/* Assign button */
+.tools-assign-btn {
+    background-color: #e7671d;
+    color: #ffffff;
+    border: none;
+    padding: 14px 28px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-right: 15px;
+    box-shadow: 0 2px 4px rgba(231, 103, 29, 0.3);
+}
+
+.tools-assign-btn:hover {
+    background-color: #f7882e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(231, 103, 29, 0.4);
+}
+
+/* Recent assignments table */
+.tools-recent-table {
+    font-size: 0.95rem;
+}
+
+.tools-recent-table td {
+    padding: 12px 16px;
+}
+
+/* Disabled options */
+.tools-select option:disabled {
+    color: #999;
+    font-style: italic;
+    background-color: #f5f5f5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .tools-section {
+        padding: 15px;
+    }
+    
+    .tools-subheading {
+        font-size: 1.3rem;
+    }
+    
+    .tools-table {
+        font-size: 0.9rem;
+    }
+    
+    .tools-table th {
+        padding: 12px 10px !important;
+    }
+    
+    .tools-table td {
+        padding: 10px;
+    }
+    
+    .tools-select,
+    .tools-input {
+        padding: 10px 12px;
+        font-size: 16px;
+    }
+    
+    .tools-assign-btn {
+        width: 100%;
+        margin-right: 0;
+    }
+    
+    .tools-hint {
+        font-size: 0.8rem;
+    }
+    
+    .tools-low-stock::after {
+        display: block;
+        margin-top: 2px;
+    }
+}
+
+/* ============================= */
+/*  PAYMENTS PAGE - Unique Styles */
+/* ============================= */
+
+/* Heading */
+.payments-heading {
+    font-size: 2rem;
+    font-weight: 400;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #dee2e6;
+}
+
+/* Summary Cards */
+.payments-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.payments-summary-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    text-align: center;
+    border-top: 4px solid #e7671d;
+}
+
+.payments-summary-label {
+    font-size: 0.95rem;
+    color: #6c757d;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.payments-summary-value {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* Table container */
+.payments-table-container {
+    overflow-x: auto;
+    margin: 25px 0;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Payments table */
+.payments-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+}
+
+/* Table header */
+.payments-table thead tr {
+    background-color: #e7671d;
+}
+
+.payments-table th {
+    background-color: #e7671d !important;
+    color: #ffffff !important;
+    padding: 18px 16px !important;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+/* Column widths */
+.payments-id-col { width: 8%; }
+.payments-client-col { width: 20%; }
+.payments-booking-col { width: 10%; }
+.payments-amount-col { width: 15%; }
+.payments-method-col { width: 15%; }
+.payments-date-col { width: 22%; }
+.payments-status-col { width: 10%; }
+
+/* Table cells */
+.payments-table td {
+    padding: 16px;
+    border-bottom: 1px solid #eaeef2;
+    color: #2c3e50;
+    vertical-align: middle;
+}
+
+/* Remove border from last row */
+.payments-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Zebra striping */
+.payments-table tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+/* Hover effect */
+.payments-table tbody tr:hover {
+    background-color: #fff3e0;
+    transition: background-color 0.2s ease;
+}
+
+/* Booking link */
+.payments-booking-link {
+    color: #e7671d;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.payments-booking-link:hover {
+    background-color: #e7671d;
+    color: #ffffff;
+}
+
+/* Amount styling */
+.payments-amount {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1.1rem;
+}
+
+/* Payment method badges */
+.payments-method-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.payments-method-cash {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.payments-method-card {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+
+.payments-method-bank {
+    background-color: #fff3e0;
+    color: #e7671d;
+}
+
+.payments-method-check {
+    background-color: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.payments-method-online {
+    background-color: #e0f2f1;
+    color: #00695c;
+}
+
+/* Date and time styling */
+.payments-date {
+    line-height: 1.5;
+}
+
+.payments-time {
+    display: block;
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-top: 2px;
+}
+
+/* Status badges */
+.payments-status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.payments-status-recent {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.payments-status-week {
+    background-color: #fff3e0;
+    color: #e7671d;
+}
+
+.payments-status-older {
+    background-color: #f5f5f5;
+    color: #757575;
+}
+
+/* Empty row */
+.payments-empty-row {
+    text-align: center;
+    padding: 40px !important;
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* Actions/Export buttons */
+.payments-actions {
+    display: flex;
+    gap: 15px;
+    margin: 25px 0;
+    flex-wrap: wrap;
+}
+
+.payments-export-btn,
+.payments-report-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.payments-export-btn {
+    background-color: #2c3e50;
+    color: #ffffff;
+}
+
+.payments-export-btn:hover {
+    background-color: #1e2b37;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.payments-report-btn {
+    background-color: #ffffff;
+    color: #2c3e50;
+    border: 2px solid #e0e0e0;
+}
+
+.payments-report-btn:hover {
+    border-color: #e7671d;
+    color: #e7671d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .payments-summary {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .payments-summary-card {
+        padding: 15px;
+    }
+    
+    .payments-summary-value {
+        font-size: 1.5rem;
+    }
+    
+    .payments-table {
+        font-size: 0.9rem;
+    }
+    
+    .payments-table th {
+        padding: 14px 10px !important;
+        font-size: 1rem;
+    }
+    
+    .payments-table td {
+        padding: 12px 10px;
+    }
+    
+    .payments-method-badge {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+    }
+    
+    .payments-status-badge {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+    }
+    
+    .payments-time {
+        font-size: 0.75rem;
+    }
+    
+    .payments-actions {
+        flex-direction: column;
+    }
+    
+    .payments-export-btn,
+    .payments-report-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Print styles */
+@media print {
+    .payments-summary,
+    .payments-actions,
+    .main-nav {
+        display: none;
+    }
+    
+    .payments-table-container {
+        box-shadow: none;
+    }
+    
+    .payments-table th {
+        background-color: #ccc !important;
+        color: #000 !important;
     }
 }

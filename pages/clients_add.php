@@ -1,49 +1,78 @@
- 
 <?php
 include "../db.php";
  
 $message = "";
  
-if (isset($_POST['save'])) {
-  $full_name = $_POST['full_name'];
-  $email = $_POST['email'];
-  $phone = $_POST['phone'];
-  $address = $_POST['address'];
+if (isset($_POST['save_client'])) {  // Changed from 'save'
+  $full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
+  $email = mysqli_real_escape_string($conn, $_POST['email']);
+  $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+  $address = mysqli_real_escape_string($conn, $_POST['address']);
  
   if ($full_name == "" || $email == "") {
     $message = "Name and Email are required!";
   } else {
     $sql = "INSERT INTO clients (full_name, email, phone, address)
             VALUES ('$full_name', '$email', '$phone', '$address')";
-    mysqli_query($conn, $sql);
-    header("Location: clients_list.php");
-    exit;
+    
+    if(mysqli_query($conn, $sql)) {
+      header("Location: clients_list.php");
+      exit;
+    } else {
+      $message = "Error: " . mysqli_error($conn);
+    }
   }
 }
 ?>
 <!doctype html>
 <html>
-<head><meta charset="utf-8"><title>Add Client</title></head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Client</title>
+  <link rel="stylesheet" href="/assessment_beginner/style.css">
+</head>
 <body>
 <?php include "../nav.php"; ?>
  
 <h2>Add Client</h2>
-<p style="color:red;"><?php echo $message; ?></p>
+
+<?php if($message != ""): ?>
+  <div class="error-message"><?php echo $message; ?></div>
+<?php endif; ?>
  
-<form method="post">
-  <label>Full Name*</label><br>
-  <input type="text" name="full_name"><br><br>
+<form method="post" class="add-form" bgcolor = #ffffff>  <!-- Added unique class -->
+  <label for="add_full_name">Full Name *</label>  <!-- Added unique for attribute -->
+  <input type="text" 
+         id="add_full_name" 
+         name="full_name" 
+         value="<?php echo isset($_POST['full_name']) ? htmlspecialchars($_POST['full_name']) : ''; ?>" 
+         required>
  
-  <label>Email*</label><br>
-  <input type="text" name="email"><br><br>
+  <label for="add_email">Email *</label>  <!-- Added unique for attribute -->
+  <input type="email" 
+         id="add_email" 
+         name="email" 
+         value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" 
+         required>
  
-  <label>Phone</label><br>
-  <input type="text" name="phone"><br><br>
+  <label for="add_phone">Phone</label>  <!-- Added unique for attribute -->
+  <input type="text" 
+         id="add_phone" 
+         name="phone" 
+         value="<?php echo isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : ''; ?>">
  
-  <label>Address</label><br>
-  <input type="text" name="address"><br><br>
+  <label for="add_address">Address</label>  <!-- Added unique for attribute -->
+  <input type="text" 
+         id="add_address" 
+         name="address" 
+         value="<?php echo isset($_POST['address']) ? htmlspecialchars($_POST['address']) : ''; ?>">
  
-  <button type="submit" name="save">Save</button>
+  <div class="button-group">
+    <button type="submit" name="save_client" class="save-btn">Save Client</button>  <!-- Changed name and added class -->
+    <a href="clients_list.php" class="back-link">← Back to List</a>
+  </div>
 </form>
+
 </body>
 </html>

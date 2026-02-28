@@ -1,56 +1,86 @@
- 
 <?php
 include "../db.php";
- 
-$id = $_GET['id'];
- 
-$get = mysqli_query($conn, "SELECT * FROM clients WHERE client_id = $id");
-$client = mysqli_fetch_assoc($get);
- 
-$message = "";
- 
-if (isset($_POST['update'])) {
-  $full_name = $_POST['full_name'];
-  $email = $_POST['email'];
-  $phone = $_POST['phone'];
-  $address = $_POST['address'];
- 
-  if ($full_name == "" || $email == "") {
-    $message = "Name and Email are required!";
-  } else {
-    $sql = "UPDATE clients
-            SET full_name='$full_name', email='$email', phone='$phone', address='$address'
-            WHERE client_id=$id";
-    mysqli_query($conn, $sql);
+
+// Check if ID is provided
+if(!isset($_GET['id']) || empty($_GET['id'])) {
     header("Location: clients_list.php");
     exit;
-  }
+}
+
+$id = mysqli_real_escape_string($conn, $_GET['id']);
+
+// Get client data
+$get = mysqli_query($conn, "SELECT * FROM clients WHERE client_id = $id");
+
+// Check if client exists
+if(mysqli_num_rows($get) == 0) {
+    header("Location: clients_list.php");
+    exit;
+}
+
+$client = mysqli_fetch_assoc($get);
+
+// Initialize message variable
+$message = "";
+
+if (isset($_POST['update'])) {
+    $full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+    $address = mysqli_real_escape_string($conn, $_POST['address']);
+ 
+    if ($full_name == "" || $email == "") {
+        $message = "Name and Email are required!";
+    } else {
+        $sql = "UPDATE clients
+                SET full_name='$full_name', email='$email', phone='$phone', address='$address'
+                WHERE client_id=$id";
+        
+        if(mysqli_query($conn, $sql)) {
+            header("Location: clients_list.php");
+            exit;
+        } else {
+            $message = "Error updating record: " . mysqli_error($conn);
+        }
+    }
 }
 ?>
 <!doctype html>
 <html>
-<head><meta charset="utf-8"><title>Edit Client</title></head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Client</title>
+    <link rel="stylesheet" href="/assessment_beginner/style.css">
+</head>
 <body>
 <?php include "../nav.php"; ?>
  
 <h2>Edit Client</h2>
-<p style="color:red;"><?php echo $message; ?></p>
+
+<?php if($message != ""): ?>
+    <div class="error-message" style="background-color: #fee9e7; color: #c62828; padding: 12px 20px; border-radius: 8px; border-left: 4px solid #c62828; margin-bottom: 20px;">
+        <?php echo $message; ?>
+    </div>
+<?php endif; ?>
  
 <form method="post">
-  <label>Full Name*</label><br>
-  <input type="text" name="full_name" value="<?php echo $client['full_name']; ?>"><br><br>
+    <label>Full Name *</label>
+    <input type="text" name="full_name" value="<?php echo htmlspecialchars($client['full_name'] ?? ''); ?>" required>
  
-  <label>Email*</label><br>
-  <input type="text" name="email" value="<?php echo $client['email']; ?>"><br><br>
+    <label>Email *</label>
+    <input type="email" name="email" value="<?php echo htmlspecialchars($client['email'] ?? ''); ?>" required>
  
-  <label>Phone</label><br>
-  <input type="text" name="phone" value="<?php echo $client['phone']; ?>"><br><br>
+    <label>Phone</label>
+    <input type="text" name="phone" value="<?php echo htmlspecialchars($client['phone'] ?? ''); ?>">
  
-  <label>Address</label><br>
-  <input type="text" name="address" value="<?php echo $client['address']; ?>"><br><br>
+    <label>Address</label>
+    <input type="text" name="address" value="<?php echo htmlspecialchars($client['address'] ?? ''); ?>">
  
-  <button type="submit" name="update">Update</button>
+    <div class="button-group">
+        <button type="submit" name="update">Update Client</button>
+        <a href="clients_list.php" class="back-link">← Back to List</a>
+    </div>
 </form>
 </body>
 </html>
- 
