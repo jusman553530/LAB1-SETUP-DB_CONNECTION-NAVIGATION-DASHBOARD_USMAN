@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+
 include "db.php";
  
 $clients = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS c FROM clients"))['c'];
@@ -13,12 +20,14 @@ $revenue = $revRow['s'];
 <head>
   <meta charset="utf-8">
   <title>Dashboard</title>
-  <link rel="stylesheet" href="/assessment_beginner/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <?php include "nav.php"; ?>
  
 <h2>Dashboard</h2>
+
+<h3>Welcome, <?php echo $_SESSION['username']; ?>!</h3>
  
 <ul>
   <li>Total Clients: <b><?php echo $clients; ?></b></li>

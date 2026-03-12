@@ -1,9 +1,25 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 include "../db.php";
+
+/* ============================
+   SOFT DELETE (Deactivate)
+   ============================ */
+if (isset($_GET['delete_id'])) {
+  $delete_id = mysqli_real_escape_string($conn, $_GET['delete_id']);
+  
+  // Soft delete (set is_active to 0)
+  mysqli_query($conn, "UPDATE services SET is_active=0 WHERE service_id=$delete_id");
+  
+  header("Location: services_list.php");
+  exit;
+}
+
+/* ============================
+   FETCH ALL SERVICES
+   ============================ */
 $result = mysqli_query($conn, "SELECT * FROM services ORDER BY service_id DESC");
 ?>
+
 <!doctype html>
 <html>
 <head>
@@ -13,48 +29,62 @@ $result = mysqli_query($conn, "SELECT * FROM services ORDER BY service_id DESC")
   <link rel="stylesheet" href="/assessment_beginner/style.css">
 </head>
 <body>
-<?php include "../nav.php"; ?>
- 
-<h2 class="services-heading">Services</h2>  <!-- Changed: unique class -->
 
-<!-- Table container -->
-<div class="services-table-container">  <!-- Changed: unique class -->
-  <table class="services-table">  <!-- Changed: unique class -->
+<?php include "../nav.php"; ?>
+
+<h2 class="services-list-heading">Services Management</h2>
+
+<p>
+  <a href="services_add.php" class="services-list-add-btn">+ Add New Service</a>
+</p>
+
+<div class="services-list-table-container">
+  <table class="services-list-table">
     <thead>
-      <tr bgcolor=#e7671d>
-        <th class="services-id-col">ID</th>  <!-- Changed: unique class -->
-        <th class="services-name-col">Service Name</th>  <!-- Changed: unique class -->
-        <th class="services-rate-col">Hourly Rate</th>  <!-- Changed: unique class -->
-        <th class="services-status-col">Status</th>  <!-- Changed: unique class -->
-        <th class="services-action-col">Action</th>  <!-- Changed: unique class -->
+      <tr bgcolor = #e7671d>
+        <th class="services-list-id">ID</th>
+        <th class="services-list-name">Service Name</th>
+        <th class="services-list-rate">Hourly Rate</th>
+        <th class="services-list-status">Status</th>
+        <th class="services-list-action">Actions</th>
       </tr>
     </thead>
     <tbody>
-      <?php while($row = mysqli_fetch_assoc($result)) { ?>
-        <tr class="services-row">  <!-- Changed: unique class -->
-          <td class="services-id"><?php echo $row['service_id']; ?></td>
-          <td class="services-name"><?php echo htmlspecialchars($row['service_name']); ?></td>
-          <td class="services-rate">₱<?php echo number_format($row['hourly_rate'], 2); ?></td>
-          <td class="services-status">
-            <span class="status-badge-<?php echo $row['is_active'] ? 'active' : 'inactive'; ?>">  <!-- Changed: unique class -->
-              <?php echo $row['is_active'] ? "Active" : "Inactive"; ?>
-            </span>
-          </td>
-          <td class="services-action">  <!-- Changed: unique class -->
-            <a href="services_edit.php?id=<?php echo $row['service_id']; ?>" class="services-edit-link">Edit</a>  <!-- Changed: unique class -->
-          </td>
+      <?php if(mysqli_num_rows($result) > 0): ?>
+        <?php while($row = mysqli_fetch_assoc($result)) { ?>
+          <tr class="services-list-row <?php echo ($row['is_active'] == 0) ? 'services-list-inactive' : ''; ?>">
+            <td class="services-list-id"><?php echo $row['service_id']; ?></td>
+            <td class="services-list-name"><?php echo htmlspecialchars($row['service_name']); ?></td>
+            <td class="services-list-rate">₱<?php echo number_format($row['hourly_rate'], 2); ?></td>
+            <td class="services-list-status">
+              <?php if ($row['is_active'] == 1): ?>
+                <span class="services-list-badge services-list-active">Active</span>
+              <?php else: ?>
+                <span class="services-list-badge services-list-inactive-badge">Inactive</span>
+              <?php endif; ?>
+            </td>
+            <td class="services-list-action">
+              <a href="services_edit.php?id=<?php echo $row['service_id']; ?>" class="services-list-edit">Edit</a>
+              
+              <?php if ($row['is_active'] == 1): ?>
+                <span class="services-list-separator">|</span>
+                <a href="services_list.php?delete_id=<?php echo $row['service_id']; ?>"
+                   class="services-list-delete"
+                   onclick="return confirm('Deactivate this service?')">
+                   Deactivate
+                </a>
+              <?php endif; ?>
+            </td>
+          </tr>
+        <?php } ?>
+      <?php else: ?>
+        <tr>
+          <td colspan="5" class="services-list-empty">No services found. <a href="services_add.php">Add your first service</a>.</td>
         </tr>
-      <?php } ?>
+      <?php endif; ?>
     </tbody>
   </table>
 </div>
-
-<!-- Show message if no services -->
-<?php if(mysqli_num_rows($result) == 0): ?>
-  <div class="services-empty-message">  <!-- Changed: unique class -->
-    <p>No services found. <a href="services_add.php" class="services-empty-link">Add your first service</a>.</p>
-  </div>
-<?php endif; ?>
 
 </body>
 </html>
